@@ -5,8 +5,9 @@ const Home = () => {
   return (
     <div className='w-full h-full'>
       <div className="flex justify-between items-center m-2">
-        <div className="section ml-6 mt-3">
-          Section
+        <div className="ml-6 mt-3">
+          <span>Section</span>
+          <div className="h-[1px] bg-[#3772FF]"/>
         </div>
         <Button type="ghost" className="outline-none flex justify-center items-center h-9 mr-2" style={{ backgroundColor: '#191B20', borderRadius: '12px' }} ghost>
           <WalletOutlined className="pr-2" style={{ color: "#3772FF" }} />

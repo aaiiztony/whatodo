@@ -53,7 +53,7 @@ const Navbar = () => {
               </div>
               <MenuFoldOutlined onClick={toggleNavbar} style={fontSize} />
             </div>
-            <Menu style={{ background: "#000000", color: "white" }} items={menuItem} />
+            <Menu theme='dark' style={{ background: "#000000"}}  items={menuItem}/>
           </div>
           <div className="px-3">
             <div className="flex gap-2 py-2 px-2">
@@ -74,7 +74,7 @@ const Navbar = () => {
           </div>
         </div>
       ) : (
-        <Button icon={<MenuOutlined />} onClick={toggleNavbar} ghost className='absolute left-0 m-4 outline-none flex justify-center items-center'>
+        <Button icon={<MenuOutlined />} onClick={toggleNavbar} ghost className='m-4 outline-none flex justify-center items-center'>
         </Button>
       )}
     </>

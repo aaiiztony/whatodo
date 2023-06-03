@@ -1,12 +1,19 @@
 import { ArrowLeftOutlined } from "@ant-design/icons"
 import { Button} from "antd"
 import { useState } from "react";
-const EditNotes = () => {
+
+type EditNotetsProps = {
+  setActiveNote: React.Dispatch<React.SetStateAction<Boolean>>;
+};
+
+const EditNotes = ({setActiveNote}:EditNotetsProps) => {
   const [currentValue, setCurrentValue] = useState({
     title:'Title',
     description:'Description'
   })
+
   const {title, description} = currentValue;
+
   const handleChange = (e:any) => {
     const { name, value } = e.target;
     setCurrentValue((prevState) => ({
@@ -14,10 +21,13 @@ const EditNotes = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e:any) => {
     e.preventDefault()
     console.log(title, description);
+    setActiveNote(false);
   }
+  
   return (
     <div className='h-full w-full'>
         <div className="w-1/2 flex justify-center items-center my-2 pr-3">
