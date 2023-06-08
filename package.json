@@ -21,6 +21,8 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.7",
     "redux": "^4.2.1",
+    "viem": "^0.3.50",
+    "wagmi": "^1.1.0",
     "web3-eth": "^1.10.0"
   },
   "devDependencies": {
