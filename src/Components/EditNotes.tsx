@@ -1,9 +1,9 @@
 import { ArrowLeftOutlined } from "@ant-design/icons"
 import { Button} from "antd"
-import { useState } from "react";
+import { useState, FormEvent} from "react";
 
 interface EditNotesProps {
-  setActiveNote: (note: any) => void;
+  setActiveNote: (active: boolean) => void;
   editValue: {
     title: string;
     description: string;
@@ -12,21 +12,19 @@ interface EditNotesProps {
 const EditNotes = (props:EditNotesProps) => {
   const {setActiveNote, editValue} = props;
   const {title, description} = editValue;
-  const [,setCurrentValue] = useState({
-    title:title,
-    description:description
+  const [currentValue, setCurrentValue] = useState({
+    etitle:title,
+    edescription:description
   })
-  // const {title, description} = currentValue;
+  const {etitle, edescription} = currentValue;
 
   const handleChange = (e:any) => {
     const { name, value } = e.target;
-    setCurrentValue((prevState:any) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setCurrentValue({...currentValue,[name]:value})
+    console.log(currentValue)
   };
-
-  const handleSubmit = (e:any) => {
+  
+  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setActiveNote(false);
     //update the respective todo
@@ -41,15 +39,15 @@ const EditNotes = (props:EditNotesProps) => {
         <form className="form w-[85%] m-auto" onSubmit={handleSubmit}>
             <input 
             required
-            name="title"
-            value={title}
+            name="etitle"
+            value={etitle}
             onChange={handleChange}
             className="w-full h-[51px] font-bold rounded-[12px] white px-5 bg-[#353945]"
             />
             <textarea 
             required
-            name="description"
-            value={description}
+            name="edescription"
+            value={edescription}
             onChange={handleChange}
             className="w-full h-[110px] font-medium rounded-[12px] px-5 py-2 mt-2 resize-none overflow-hidden bg-[#353945]"
             ></textarea>

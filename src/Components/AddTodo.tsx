@@ -11,9 +11,9 @@ interface TodoList {
     id: string;
     todos: Todo[];
 }
-const AddTodo = (props: any) => {
-    const { handleInputChange, inputValue, item, setDivList, setInputValue } = props;
 
+const AddTodo = ({inputValue, item, setDivList, setInputValue }: any) => {
+    
     const handleAddTodo = (listId: string) => {
         const listName = listId.trim();
         if (listName !== '') {
@@ -23,8 +23,7 @@ const AddTodo = (props: any) => {
                 description: inputValue.description,
                 isDone: true,
             };
-            console.log(newTodo)
-            setDivList((prevDivList:TodoList[]) => {
+            setDivList((prevDivList: TodoList[]) => {
                 // Find the list with the specified listId
                 const updatedDivList = prevDivList.map(list => {
                     if (list.id === listId) {
@@ -39,11 +38,15 @@ const AddTodo = (props: any) => {
 
                 return updatedDivList;
             });
-            setInputValue({ ...inputValue, title: '', description:'' });
+
+            setInputValue({ ...inputValue, title: '', description: '' });
         }
     };
-
-    const handleInput = (e: any) => {
+    const handleInputChange = (e:any) => {
+        const {name, value} = e.target;
+        setInputValue({...inputValue, [name]:value})
+    }
+    const handleInputSize = (e: any) => {
         let container = e.target;
         container.style.height = 'auto';
         container.style.height = `${container.scrollHeight + 5}px`;
@@ -57,7 +60,7 @@ const AddTodo = (props: any) => {
                 </div>
                 <Button size='small' shape='circle' className='m-2 bg-[#353945] text-white border-none cursor-pointer flex justify-center items-center' onClick={() => handleAddTodo(item.id)}><PlusOutlined /></Button>
             </div>
-            <textarea className='px-2 w-full bg-transparent opacity-50 text-sm resize-none overflow-none' placeholder='Add Todo Description' name='description' onInput={handleInput} value={inputValue.description} onChange={handleInputChange}
+            <textarea className='px-2 w-full bg-transparent opacity-50 text-sm resize-none overflow-none' placeholder='Add Todo Description' name='description' onInput={handleInputSize} value={inputValue.description} onChange={handleInputChange}
             ></textarea>
         </div>
     )

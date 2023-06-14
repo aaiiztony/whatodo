@@ -16,26 +16,19 @@ interface TodoList {
 // Create the initial state
 const initialState: TodoList[] = [
   {
-    id: "1",
+    id: "Things to Buy",
     todos: [
       {
-        id: "1",
-        title: "Example Todo 1",
-        description: "This is an example todo",
-        isDone: false
+        id: "First Todo",
+        title: "Title Todo 1",
+        description: "This is an example todo description",
+        isDone: false,
       }
     ]
-  }
+  },
 ];
 
-// Create the context
-interface TodoContextProps {
-  todoLists: TodoList[];
-}
-
-export const TodoContext = createContext<TodoContextProps>({
-  todoLists: initialState
-});
+export const TodoContext = createContext<TodoList[]>(initialState);
 
 
 

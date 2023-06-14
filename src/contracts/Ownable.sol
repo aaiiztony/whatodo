@@ -61,7 +61,6 @@ abstract contract Ownable is Context {
     function renounceOwnership() public virtual onlyOwner {
         _transferOwnership(address(0));
     }
-
     /**
      * @dev Transfers ownership of the contract to a new account (`newOwner`).
      * Can only be called by the current owner.
