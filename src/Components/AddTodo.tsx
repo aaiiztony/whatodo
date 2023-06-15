@@ -46,13 +46,14 @@ const AddTodo = ({inputValue, item, setDivList, setInputValue }: any) => {
         const {name, value} = e.target;
         setInputValue({...inputValue, [name]:value})
     }
+    //manages the size of the todo container
     const handleInputSize = (e: any) => {
         let container = e.target;
         container.style.height = 'auto';
         container.style.height = `${container.scrollHeight + 5}px`;
     }
     return (
-        <div className='bg-[#191B20] mt-1 w-full min-h-[100px] rounded-[16px]'>
+        <div className='bg-[#191B20] mt-1 w-full min-h-[100px] rounded-xl'>
             <div className="flex justify-between items-center">
                 <div className="title-logo flex items-center gap-2 justify-center">
                     <Button size='small' shape='circle' className='ml-2 bg-[#353945] text-white border-none cursor-pointer flex justify-center items-center'><ShoppingFilled /></Button>

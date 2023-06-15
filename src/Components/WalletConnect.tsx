@@ -2,25 +2,23 @@ import {
     useAccount,
     useConnect,
     useDisconnect,
-    // useEnsAvatar,
     useEnsName,
   } from 'wagmi'
 
 const WalletConnect = ({setConnected}:{setConnected:(connect:boolean)=>void}) => {
+  //wagmi hooks to check if the user is connected or not, and destructure the address of the user
     const { address, connector, isConnected } = useAccount();
     const { data: ensName } = useEnsName({ address });
-    // const { data: ensAvatar } = useEnsAvatar({ address });
     const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
     const { disconnect } = useDisconnect();
   
     if (isConnected) {
       return (
-        <div>
-          {/* <img src={ensAvatar} alt="ENS Avatar" /> */}
+        <div className='flex flex-col gap-4'>
+          <div>Connected to {connector?connector.name:'Not Found'}</div>
           <div>{ensName ? `${ensName} (${address})` : address}</div>
-          <div>Connected to {connector?connector.name:'Not Found'}</div> <br />
-          <button onClick={()=>disconnect}>Disconnect</button><br />
-          <button onClick={()=>setConnected(true)}>Show Home</button>
+          <button className='outline rounded-sm' onClick={()=>disconnect()}>Disconnect</button>
+          <button className='outline rounded-sm bg-blue-300 text-black' onClick={()=>setConnected(true)}>Homepage</button>
         </div>
       )
     }
@@ -28,12 +26,13 @@ const WalletConnect = ({setConnected}:{setConnected:(connect:boolean)=>void}) =>
     return (
       <div>
         {connectors.map((connector) => (
-          <button
+          <button 
+          className='outline rounded-sm py-2 px-4'
             disabled={!connector.ready}
             key={connector.id}
             onClick={() => connect({ connector })}
           >
-            {connector.name}
+            {`Connect to ${connector.name}`}
             {!connector.ready && ' (unsupported)'}
             {isLoading &&
               connector.id === pendingConnector?.id &&

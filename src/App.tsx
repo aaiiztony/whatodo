@@ -14,7 +14,12 @@ const App = () => {
     <ThemeContext.Provider value={theme}>
     <div className="relative h-screen flex">
         <Navbar username='Tony'/>
-        {connected?(<Home />):(<WalletConnect setConnected={setConnected}/>)}
+        {connected?(<Home />):
+        (
+        <div className="flex h-full w-full justify-center items-center">
+          <WalletConnect setConnected={setConnected}/>
+        </div>
+          )}
     </div>
     </ThemeContext.Provider>
     </WagmiConfig>
